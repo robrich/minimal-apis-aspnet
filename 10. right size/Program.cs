@@ -36,9 +36,11 @@ app.MapGet("/", (InterestingConfig config) => config);
 
 app.MapHealthChecks("/health");
 
-app.Map("/error", () => Results.StatusCode(500));
-app.Map("/{*url}", () => Results.NotFound());
+app.Map("/error", () => Results.Problem());
+app.Map("/{*url}", () => Results.NotFound(new {message="Not Found", status=404}));
 
 app.Run();
 
 public record class InterestingConfig(string thanks, string name, string email, string username, string largePic, string mediumPic, string thumbnailPic);
+
+public partial class Program { }
