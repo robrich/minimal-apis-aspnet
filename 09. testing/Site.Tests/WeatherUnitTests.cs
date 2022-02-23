@@ -1,5 +1,3 @@
-using Moq;
-
 namespace Site.Tests;
 
 public class WeatherUnitTests

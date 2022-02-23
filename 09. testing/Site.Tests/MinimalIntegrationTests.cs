@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Site.Tests;
+﻿namespace Site.Tests;
 
 public class MinimalIntegrationTests
 {
