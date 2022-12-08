@@ -7,7 +7,7 @@ public class WeatherIntegrationTests
     {
         // arrange
         await using var application = new SiteApp();
-        using var client = application.CreateClient();
+        using HttpClient client = application.CreateClient();
 
         // act
         using var res = await client.GetAsync("/api/WeatherForecast");
@@ -15,11 +15,9 @@ public class WeatherIntegrationTests
         List<WeatherForecast>? weatherForecasts = JsonSerializer.Deserialize<List<WeatherForecast>>(body);
 
         // assert
-        using (new AssertionScope())
-        {
-            weatherForecasts.Should().NotBeNull();
-            weatherForecasts.Should().HaveCount(5);
-        }
+        using var scope = new AssertionScope();
+        weatherForecasts.Should().NotBeNull();
+        weatherForecasts.Should().HaveCount(5);
     }
 
 }

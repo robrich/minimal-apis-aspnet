@@ -13,11 +13,9 @@ public class WeatherUnitTests
         IEnumerable<WeatherForecast> weatherForecasts = controller.Get();
 
         // assert
-        using (new AssertionScope())
-        {
-            weatherForecasts.Should().NotBeNull();
-            weatherForecasts.Should().HaveCount(5);
-        }
+        using var scope = new AssertionScope();
+        weatherForecasts.Should().NotBeNull();
+        weatherForecasts.Should().HaveCount(5);
     }
 
 }

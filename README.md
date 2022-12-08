@@ -1,7 +1,7 @@
-Minimal APIs with ASP.NET 6.0
-=============================
+Minimal APIs with ASP.NET
+=========================
 
-This code shows how we get from ASP.NET 5 to ASP.NET 6 with minimal APIs. Throughout the live demo, we upgrade small pieces of an ASP.NET 5 app until we leverage these brand-new ASP.NET and C# 10 features:
+This code shows how we get from ASP.NET 5 to ASP.NET 7 with minimal APIs. Throughout the live demo, we upgrade small pieces of an ASP.NET 5 app until we leverage these brand-new ASP.NET and C# 10 features:
 
 - File-scoped namespaces
 - Global using directives
