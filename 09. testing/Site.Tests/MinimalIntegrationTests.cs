@@ -12,7 +12,7 @@ public class MinimalIntegrationTests
     {
         // arrange
         await using var application = new SiteApp();
-        using var client = application.CreateClient();
+        using HttpClient client = application.CreateClient();
 
         // act
         using var res = await client.GetAsync("/api/minimal?name=test");
@@ -20,11 +20,10 @@ public class MinimalIntegrationTests
         MinimalModel? model = JsonSerializer.Deserialize<MinimalModel>(body, jsonOptions);
 
         // assert
-        using var scope = new AssertionScope();
-        model.Should().NotBeNull();
+        model.ShouldNotBeNull();
         ArgumentNullException.ThrowIfNull(model);
-        model.Id.Should().Be(3);
-        model.Message.Should().Be("Hello test");
+        model.Id.ShouldBe(3);
+        model.Message.ShouldBe("Hello test");
     }
 
     [Fact]
@@ -47,11 +46,10 @@ public class MinimalIntegrationTests
         MinimalModel? model = JsonSerializer.Deserialize<MinimalModel>(body, jsonOptions);
 
         // assert
-        using var scope = new AssertionScope();
-        model.Should().NotBeNull();
+        model.ShouldNotBeNull();
         ArgumentNullException.ThrowIfNull(model);
-        model.Message.Should().Be("Hello foo and 5");
-        model.Data.Should().BeEquivalentTo(expected);
+        model.Message.ShouldBe("Hello foo and 5");
+        model.Data.ShouldBeEquivalentTo(expected);
     }
 
 }

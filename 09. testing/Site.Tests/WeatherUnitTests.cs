@@ -5,22 +5,22 @@ public class WeatherUnitTests
     [Fact]
     public void Gets5Forecasts()
     {
-        // arrange
         /*
-        var logger = new Mock<ILogger<WeatherForecastController>>();
-        WeatherForecastController controller = new WeatherForecastController(logger.Object);
+        // arrange
+        var logger = Substitute.For<ILogger<WeatherForecastController>>();
+        WeatherForecastController controller = new WeatherForecastController(logger);
         */
-        // use AutoMocker https://github.com/moq/Moq.AutoMocker
-        var mocker = new AutoMocker();
-        WeatherForecastController controller = mocker.CreateInstance<WeatherForecastController>();
+        // use AutoFixture https://www.nuget.org/packages/AutoFixture.AutoNSubstitute
+        var ioc = new Fixture().Customize(new AutoNSubstituteCustomization());
+        //WeatherForecastController controller = ioc.Create<WeatherForecastController>();
+        WeatherForecastController controller = ioc.Build<WeatherForecastController>().OmitAutoProperties().Create();
 
         // act
         IEnumerable<WeatherForecast> weatherForecasts = controller.Get();
 
         // assert
-        using var scope = new AssertionScope();
-        weatherForecasts.Should().NotBeNull();
-        weatherForecasts.Should().HaveCount(5);
+        weatherForecasts.ShouldNotBeNull();
+        weatherForecasts.Count().ShouldBe(5);
     }
 
 }

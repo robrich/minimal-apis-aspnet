@@ -15,9 +15,8 @@ public class WeatherIntegrationTests
         List<WeatherForecast>? weatherForecasts = JsonSerializer.Deserialize<List<WeatherForecast>>(body);
 
         // assert
-        using var scope = new AssertionScope();
-        weatherForecasts.Should().NotBeNull();
-        weatherForecasts.Should().HaveCount(5);
+        weatherForecasts.ShouldNotBeNull();
+        weatherForecasts.Count.ShouldBe(5);
     }
 
 }

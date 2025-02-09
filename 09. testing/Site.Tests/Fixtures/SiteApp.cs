@@ -1,17 +1,10 @@
 ﻿namespace Site.Tests.Fixtures;
 
-public class SiteApp : WebApplicationFactory<Program>
+public class SiteApp(string environment = "Development") : WebApplicationFactory<Program>
 {
-    private readonly string _environment;
-
-    public SiteApp(string environment = "Development")
-    {
-        _environment = environment;
-    }
-
     protected override IHost CreateHost(IHostBuilder builder)
     {
-        builder.UseEnvironment(_environment);
+        builder.UseEnvironment(environment);
 
         builder.ConfigureServices(services =>
         {
